@@ -7,11 +7,15 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -37,6 +41,7 @@ fun SearchBar(
     modifier: Modifier = Modifier,
     text: String,
     readOnly: Boolean,
+    onClearClick: (() -> Unit)? = null,
     onClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit
@@ -57,6 +62,7 @@ fun SearchBar(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(60.dp)
                 .searchBarBorder(),
             value = text,
             onValueChange = onValueChange,
@@ -69,10 +75,22 @@ fun SearchBar(
                     tint = colorResource(id = R.color.body)
                 )
             },
+            trailingIcon = {
+                if (!readOnly && text.isNotEmpty()) {
+                    IconButton(onClick = { onClearClick?.invoke() }) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = null,
+                            modifier = Modifier.size(IconSize),
+                            tint = colorResource(id = R.color.body)
+                        )
+                    }
+                }
+            },
             placeholder = {
                 Text(
                     text = "Search",
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = colorResource(
                         id = R.color.placeholder
                     )
