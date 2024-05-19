@@ -35,6 +35,7 @@ import com.loc.newsapp.util.Dimens.ExtraSmallPadding
 import com.loc.newsapp.util.Dimens.ExtraSmallPadding2
 import com.loc.newsapp.util.Dimens.SmallIconSize
 import com.loc.newsapp.ui.theme.NewsAppTheme
+import com.loc.newsapp.util.convertDateFormat
 
 @Composable
 fun ArticleCard(
@@ -85,7 +86,7 @@ fun ArticleCard(
                 )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                 Text(
-                    text = article.publishedAt,
+                    text = convertDateFormat(article.publishedAt),
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = colorResource(id = R.color.body)
                 )

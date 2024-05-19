@@ -113,7 +113,7 @@ fun HomeScreen(
             text = titles,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = MediumPadding1)
+                .padding(horizontal = MediumPadding1)
                 .horizontalScroll(scrollState,false),
             fontSize = 12.sp,
             color = colorResource(id = R.color.placeholder)
@@ -122,7 +122,7 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(10.dp))
 
         ArticlesList(
-            modifier = Modifier.padding(horizontal = MediumPadding1),
+            modifier = Modifier.padding(horizontal = 10.dp),
             articles = articles,
             onClick = {
                 navigateToDetails(it)
