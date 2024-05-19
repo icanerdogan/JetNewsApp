@@ -64,11 +64,11 @@ fun HomeScreen(
             contentDescription = null,
             modifier = Modifier
                 .wrapContentWidth()
-                .height(80.dp)
+                .height(100.dp)
                 .padding(start = MediumPadding1)
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
 
         SearchBar(
             modifier = Modifier.padding(horizontal = MediumPadding1),

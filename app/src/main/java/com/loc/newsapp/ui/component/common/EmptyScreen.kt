@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,26 +36,21 @@ import java.net.SocketTimeoutException
 @Composable
 fun EmptyScreen(error: LoadState.Error? = null) {
 
-    var message by remember {
-        mutableStateOf(parseErrorMessage(error = error))
-    }
+    var message by remember { mutableStateOf(parseErrorMessage(error = error)) }
 
-    var icon by remember {
-        mutableStateOf(R.drawable.ic_network_error)
-    }
+    var icon by remember { mutableIntStateOf(R.drawable.ic_network_error) }
 
     if (error == null){
-        message = "You have not saved news so far !"
+        message = "There are no news to show!"
         icon = R.drawable.ic_search_document
     }
 
-    var startAnimation by remember {
-        mutableStateOf(false)
-    }
+    var startAnimation by remember { mutableStateOf(false) }
 
     val alphaAnimation by animateFloatAsState(
         targetValue = if (startAnimation) 0.3f else 0f,
-        animationSpec = tween(durationMillis = 1000)
+        animationSpec = tween(durationMillis = 1000),
+        label = "Empty Screen Animation"
     )
 
     LaunchedEffect(key1 = true) {

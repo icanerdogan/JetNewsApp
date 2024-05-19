@@ -12,6 +12,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.util.Dimens.MediumPadding1
 import com.loc.newsapp.ui.component.common.ArticlesList
+import com.loc.newsapp.ui.component.common.EmptyScreen
 import com.loc.newsapp.ui.component.common.SearchBar
 
 @Composable
@@ -32,14 +33,22 @@ fun SearchScreen(
             .fillMaxSize()
     ) {
         SearchBar(
-            text = state.searchQuery,
+            text = state.searchQuery.value,
             readOnly = false,
+            onClearClick = { state.searchQuery.value = ""},
             onValueChange = { event(SearchEvent.UpdateSearchQuery(it)) },
-            onSearch = { event(SearchEvent.SearchNews) })
+            onSearch = { event(SearchEvent.SearchNews) }
+        )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
-        state.articles?.let {
-            val articles = it.collectAsLazyPagingItems()
+
+        val articles = state.articles?.collectAsLazyPagingItems()
+
+        if (state.searchQuery.value.isEmpty()) {
+            EmptyScreen(null)
+        }
+
+        if (articles != null) {
             ArticlesList(articles = articles, onClick = { navigateToDetails(it) })
         }
     }
