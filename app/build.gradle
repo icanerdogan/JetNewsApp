@@ -10,12 +10,12 @@ def versionMinor = 0
 def versionPatch = 0
 android {
     namespace 'com.canerdogan.jetnews'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.canerdogan.jetnews"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode versionMajor * 100 + versionMinor * 10 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,7 +34,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
