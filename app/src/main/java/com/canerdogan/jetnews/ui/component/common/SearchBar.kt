@@ -97,9 +97,11 @@ fun SearchBar(
                 )
             },
             shape = MaterialTheme.shapes.medium,
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = colorResource(id = R.color.input_background),
-                textColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = colorResource(id = R.color.input_background),
+                unfocusedContainerColor = colorResource(id = R.color.input_background),
+                focusedTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                unfocusedTextColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 cursorColor = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 disabledIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
