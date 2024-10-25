@@ -7,7 +7,7 @@ plugins {
 }
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 2
+def versionPatch = 3
 android {
     namespace 'com.canerdogan.jetnews'
     compileSdk 34
@@ -32,9 +32,20 @@ android {
 
     }
 
+    signingConfigs {
+        release {
+            storeFile file("signing/NewsApp.jks")
+            storePassword "123456"
+            keyAlias "NewsApp"
+            keyPassword "123456"
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled true
+            debuggable true
+            minifyEnabled false
+            isShrinkResources()
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -77,6 +88,10 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0"
 
     //Splash Api
     implementation "androidx.core:core-splashscreen:1.0.1"
