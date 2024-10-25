@@ -7,7 +7,7 @@ plugins {
 }
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 3
+def versionPatch = 4
 android {
     namespace 'com.canerdogan.jetnews'
     compileSdk 34
@@ -42,7 +42,7 @@ android {
     }
     buildTypes {
         release {
-            debuggable true
+            debuggable false
             minifyEnabled false
             isShrinkResources()
             signingConfig signingConfigs.release
